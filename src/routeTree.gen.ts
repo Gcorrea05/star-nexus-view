@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SegurancaRouteImport } from './routes/seguranca'
 import { Route as RecursosRouteImport } from './routes/recursos'
 import { Route as EnergiaRouteImport } from './routes/energia'
 import { Route as AmbientalRouteImport } from './routes/ambiental'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SegurancaRoute = SegurancaRouteImport.update({
+  id: '/seguranca',
+  path: '/seguranca',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RecursosRoute = RecursosRouteImport.update({
   id: '/recursos',
   path: '/recursos',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/ambiental': typeof AmbientalRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
+  '/seguranca': typeof SegurancaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
+  '/seguranca': typeof SegurancaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/ambiental': typeof AmbientalRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
+  '/seguranca': typeof SegurancaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ambiental' | '/energia' | '/recursos'
+  fullPaths: '/' | '/ambiental' | '/energia' | '/recursos' | '/seguranca'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ambiental' | '/energia' | '/recursos'
-  id: '__root__' | '/' | '/ambiental' | '/energia' | '/recursos'
+  to: '/' | '/ambiental' | '/energia' | '/recursos' | '/seguranca'
+  id: '__root__' | '/' | '/ambiental' | '/energia' | '/recursos' | '/seguranca'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,10 +76,18 @@ export interface RootRouteChildren {
   AmbientalRoute: typeof AmbientalRoute
   EnergiaRoute: typeof EnergiaRoute
   RecursosRoute: typeof RecursosRoute
+  SegurancaRoute: typeof SegurancaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/seguranca': {
+      id: '/seguranca'
+      path: '/seguranca'
+      fullPath: '/seguranca'
+      preLoaderRoute: typeof SegurancaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/recursos': {
       id: '/recursos'
       path: '/recursos'
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   AmbientalRoute: AmbientalRoute,
   EnergiaRoute: EnergiaRoute,
   RecursosRoute: RecursosRoute,
+  SegurancaRoute: SegurancaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
