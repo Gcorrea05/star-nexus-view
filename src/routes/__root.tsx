@@ -7,6 +7,11 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { Toaster } from "sonner";
+import { SimulationProvider } from "@/lib/simulation";
+import { AresSidebar } from "@/components/ares/Sidebar";
+import { AresHeader } from "@/components/ares/Header";
+import { MobileNav } from "@/components/ares/MobileNav";
 
 import appCss from "../styles.css?url";
 
@@ -72,11 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "ARES-BASE · Sistema de Controle da Colônia Espacial" },
+      { name: "description", content: "Central de comando da Terra para a colônia ARES-BASE — monitoramento em tempo real de energia, ambiente, recursos, segurança e comunicação criptografada." },
+      { name: "author", content: "ARES Mission Control" },
+      { property: "og:title", content: "ARES-BASE · Mission Control" },
+      { property: "og:description", content: "Sistema inteligente, seguro e resiliente para colônia espacial." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -96,11 +101,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR" className="dark">
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="min-h-screen">
         {children}
         <Scripts />
       </body>
@@ -113,7 +118,19 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <SimulationProvider>
+        <div className="flex min-h-screen w-full">
+          <AresSidebar />
+          <div className="flex min-w-0 flex-1 flex-col">
+            <AresHeader />
+            <main className="flex-1 p-4 md:p-6">
+              <Outlet />
+            </main>
+            <MobileNav />
+          </div>
+        </div>
+        <Toaster theme="dark" position="top-right" richColors closeButton />
+      </SimulationProvider>
     </QueryClientProvider>
   );
 }

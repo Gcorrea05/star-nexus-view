@@ -9,8 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SegurancaRouteImport } from './routes/seguranca'
+import { Route as RecursosRouteImport } from './routes/recursos'
+import { Route as LogsRouteImport } from './routes/logs'
+import { Route as EnergiaRouteImport } from './routes/energia'
+import { Route as CybersecurityRouteImport } from './routes/cybersecurity'
+import { Route as ComunicacaoRouteImport } from './routes/comunicacao'
+import { Route as CenariosRouteImport } from './routes/cenarios'
+import { Route as AmbientalRouteImport } from './routes/ambiental'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SegurancaRoute = SegurancaRouteImport.update({
+  id: '/seguranca',
+  path: '/seguranca',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogsRoute = LogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnergiaRoute = EnergiaRouteImport.update({
+  id: '/energia',
+  path: '/energia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CybersecurityRoute = CybersecurityRouteImport.update({
+  id: '/cybersecurity',
+  path: '/cybersecurity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComunicacaoRoute = ComunicacaoRouteImport.update({
+  id: '/comunicacao',
+  path: '/comunicacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CenariosRoute = CenariosRouteImport.update({
+  id: '/cenarios',
+  path: '/cenarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AmbientalRoute = AmbientalRouteImport.update({
+  id: '/ambiental',
+  path: '/ambiental',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +67,144 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ambiental': typeof AmbientalRoute
+  '/cenarios': typeof CenariosRoute
+  '/comunicacao': typeof ComunicacaoRoute
+  '/cybersecurity': typeof CybersecurityRoute
+  '/energia': typeof EnergiaRoute
+  '/logs': typeof LogsRoute
+  '/recursos': typeof RecursosRoute
+  '/seguranca': typeof SegurancaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ambiental': typeof AmbientalRoute
+  '/cenarios': typeof CenariosRoute
+  '/comunicacao': typeof ComunicacaoRoute
+  '/cybersecurity': typeof CybersecurityRoute
+  '/energia': typeof EnergiaRoute
+  '/logs': typeof LogsRoute
+  '/recursos': typeof RecursosRoute
+  '/seguranca': typeof SegurancaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ambiental': typeof AmbientalRoute
+  '/cenarios': typeof CenariosRoute
+  '/comunicacao': typeof ComunicacaoRoute
+  '/cybersecurity': typeof CybersecurityRoute
+  '/energia': typeof EnergiaRoute
+  '/logs': typeof LogsRoute
+  '/recursos': typeof RecursosRoute
+  '/seguranca': typeof SegurancaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ambiental'
+    | '/cenarios'
+    | '/comunicacao'
+    | '/cybersecurity'
+    | '/energia'
+    | '/logs'
+    | '/recursos'
+    | '/seguranca'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ambiental'
+    | '/cenarios'
+    | '/comunicacao'
+    | '/cybersecurity'
+    | '/energia'
+    | '/logs'
+    | '/recursos'
+    | '/seguranca'
+  id:
+    | '__root__'
+    | '/'
+    | '/ambiental'
+    | '/cenarios'
+    | '/comunicacao'
+    | '/cybersecurity'
+    | '/energia'
+    | '/logs'
+    | '/recursos'
+    | '/seguranca'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AmbientalRoute: typeof AmbientalRoute
+  CenariosRoute: typeof CenariosRoute
+  ComunicacaoRoute: typeof ComunicacaoRoute
+  CybersecurityRoute: typeof CybersecurityRoute
+  EnergiaRoute: typeof EnergiaRoute
+  LogsRoute: typeof LogsRoute
+  RecursosRoute: typeof RecursosRoute
+  SegurancaRoute: typeof SegurancaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/seguranca': {
+      id: '/seguranca'
+      path: '/seguranca'
+      fullPath: '/seguranca'
+      preLoaderRoute: typeof SegurancaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logs': {
+      id: '/logs'
+      path: '/logs'
+      fullPath: '/logs'
+      preLoaderRoute: typeof LogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/energia': {
+      id: '/energia'
+      path: '/energia'
+      fullPath: '/energia'
+      preLoaderRoute: typeof EnergiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cybersecurity': {
+      id: '/cybersecurity'
+      path: '/cybersecurity'
+      fullPath: '/cybersecurity'
+      preLoaderRoute: typeof CybersecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comunicacao': {
+      id: '/comunicacao'
+      path: '/comunicacao'
+      fullPath: '/comunicacao'
+      preLoaderRoute: typeof ComunicacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cenarios': {
+      id: '/cenarios'
+      path: '/cenarios'
+      fullPath: '/cenarios'
+      preLoaderRoute: typeof CenariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ambiental': {
+      id: '/ambiental'
+      path: '/ambiental'
+      fullPath: '/ambiental'
+      preLoaderRoute: typeof AmbientalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +217,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AmbientalRoute: AmbientalRoute,
+  CenariosRoute: CenariosRoute,
+  ComunicacaoRoute: ComunicacaoRoute,
+  CybersecurityRoute: CybersecurityRoute,
+  EnergiaRoute: EnergiaRoute,
+  LogsRoute: LogsRoute,
+  RecursosRoute: RecursosRoute,
+  SegurancaRoute: SegurancaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
