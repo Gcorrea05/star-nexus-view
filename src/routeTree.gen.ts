@@ -15,6 +15,7 @@ import { Route as LogsRouteImport } from './routes/logs'
 import { Route as EnergiaRouteImport } from './routes/energia'
 import { Route as CybersecurityRouteImport } from './routes/cybersecurity'
 import { Route as ComunicacaoRouteImport } from './routes/comunicacao'
+import { Route as CenariosRouteImport } from './routes/cenarios'
 import { Route as AmbientalRouteImport } from './routes/ambiental'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -48,6 +49,11 @@ const ComunicacaoRoute = ComunicacaoRouteImport.update({
   path: '/comunicacao',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CenariosRoute = CenariosRouteImport.update({
+  id: '/cenarios',
+  path: '/cenarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AmbientalRoute = AmbientalRouteImport.update({
   id: '/ambiental',
   path: '/ambiental',
@@ -62,6 +68,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
+  '/cenarios': typeof CenariosRoute
   '/comunicacao': typeof ComunicacaoRoute
   '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
+  '/cenarios': typeof CenariosRoute
   '/comunicacao': typeof ComunicacaoRoute
   '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
+  '/cenarios': typeof CenariosRoute
   '/comunicacao': typeof ComunicacaoRoute
   '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ambiental'
+    | '/cenarios'
     | '/comunicacao'
     | '/cybersecurity'
     | '/energia'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/ambiental'
+    | '/cenarios'
     | '/comunicacao'
     | '/cybersecurity'
     | '/energia'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/ambiental'
+    | '/cenarios'
     | '/comunicacao'
     | '/cybersecurity'
     | '/energia'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AmbientalRoute: typeof AmbientalRoute
+  CenariosRoute: typeof CenariosRoute
   ComunicacaoRoute: typeof ComunicacaoRoute
   CybersecurityRoute: typeof CybersecurityRoute
   EnergiaRoute: typeof EnergiaRoute
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComunicacaoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cenarios': {
+      id: '/cenarios'
+      path: '/cenarios'
+      fullPath: '/cenarios'
+      preLoaderRoute: typeof CenariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ambiental': {
       id: '/ambiental'
       path: '/ambiental'
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AmbientalRoute: AmbientalRoute,
+  CenariosRoute: CenariosRoute,
   ComunicacaoRoute: ComunicacaoRoute,
   CybersecurityRoute: CybersecurityRoute,
   EnergiaRoute: EnergiaRoute,
