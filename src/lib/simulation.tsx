@@ -284,7 +284,7 @@ function applyScenario(state: SimState, key: string): SimState {
       s.restrictedPresence = true;
       s.doorsLocked = s.doorsTotal;
       s.accessLog = [
-        { id: Math.random().toString(36).slice(2), ts: Date.now(), user: "UNKNOWN-X", sector: "Comando", result: "negado" },
+        { id: Math.random().toString(36).slice(2), ts: Date.now(), user: "UNKNOWN-X", sector: "Comando", result: "negado" as const },
         ...s.accessLog,
       ].slice(0, 12);
       break;
