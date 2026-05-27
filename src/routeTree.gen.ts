@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SegurancaRouteImport } from './routes/seguranca'
 import { Route as RecursosRouteImport } from './routes/recursos'
+import { Route as LogsRouteImport } from './routes/logs'
 import { Route as EnergiaRouteImport } from './routes/energia'
 import { Route as CybersecurityRouteImport } from './routes/cybersecurity'
 import { Route as ComunicacaoRouteImport } from './routes/comunicacao'
@@ -25,6 +26,11 @@ const SegurancaRoute = SegurancaRouteImport.update({
 const RecursosRoute = RecursosRouteImport.update({
   id: '/recursos',
   path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogsRoute = LogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnergiaRoute = EnergiaRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/comunicacao': typeof ComunicacaoRoute
   '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
+  '/logs': typeof LogsRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/comunicacao': typeof ComunicacaoRoute
   '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
+  '/logs': typeof LogsRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/comunicacao': typeof ComunicacaoRoute
   '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
+  '/logs': typeof LogsRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/comunicacao'
     | '/cybersecurity'
     | '/energia'
+    | '/logs'
     | '/recursos'
     | '/seguranca'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/comunicacao'
     | '/cybersecurity'
     | '/energia'
+    | '/logs'
     | '/recursos'
     | '/seguranca'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/comunicacao'
     | '/cybersecurity'
     | '/energia'
+    | '/logs'
     | '/recursos'
     | '/seguranca'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   ComunicacaoRoute: typeof ComunicacaoRoute
   CybersecurityRoute: typeof CybersecurityRoute
   EnergiaRoute: typeof EnergiaRoute
+  LogsRoute: typeof LogsRoute
   RecursosRoute: typeof RecursosRoute
   SegurancaRoute: typeof SegurancaRoute
 }
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/recursos'
       fullPath: '/recursos'
       preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logs': {
+      id: '/logs'
+      path: '/logs'
+      fullPath: '/logs'
+      preLoaderRoute: typeof LogsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/energia': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComunicacaoRoute: ComunicacaoRoute,
   CybersecurityRoute: CybersecurityRoute,
   EnergiaRoute: EnergiaRoute,
+  LogsRoute: LogsRoute,
   RecursosRoute: RecursosRoute,
   SegurancaRoute: SegurancaRoute,
 }
