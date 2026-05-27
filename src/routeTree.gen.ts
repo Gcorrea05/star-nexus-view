@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RecursosRouteImport } from './routes/recursos'
 import { Route as EnergiaRouteImport } from './routes/energia'
 import { Route as AmbientalRouteImport } from './routes/ambiental'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RecursosRoute = RecursosRouteImport.update({
+  id: '/recursos',
+  path: '/recursos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnergiaRoute = EnergiaRouteImport.update({
   id: '/energia',
   path: '/energia',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
   '/energia': typeof EnergiaRoute
+  '/recursos': typeof RecursosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
   '/energia': typeof EnergiaRoute
+  '/recursos': typeof RecursosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
   '/energia': typeof EnergiaRoute
+  '/recursos': typeof RecursosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ambiental' | '/energia'
+  fullPaths: '/' | '/ambiental' | '/energia' | '/recursos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ambiental' | '/energia'
-  id: '__root__' | '/' | '/ambiental' | '/energia'
+  to: '/' | '/ambiental' | '/energia' | '/recursos'
+  id: '__root__' | '/' | '/ambiental' | '/energia' | '/recursos'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AmbientalRoute: typeof AmbientalRoute
   EnergiaRoute: typeof EnergiaRoute
+  RecursosRoute: typeof RecursosRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/recursos': {
+      id: '/recursos'
+      path: '/recursos'
+      fullPath: '/recursos'
+      preLoaderRoute: typeof RecursosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/energia': {
       id: '/energia'
       path: '/energia'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AmbientalRoute: AmbientalRoute,
   EnergiaRoute: EnergiaRoute,
+  RecursosRoute: RecursosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
