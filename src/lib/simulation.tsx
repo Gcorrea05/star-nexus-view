@@ -457,6 +457,36 @@ export function severityToToken(sev: Severity) {
   }
 }
 
+// Static Tailwind class maps so the JIT sees full class names.
+export const sevText: Record<Severity, string> = {
+  ok: "text-status-ok",
+  info: "text-status-info",
+  warn: "text-status-warn",
+  high: "text-status-high",
+  crit: "text-status-crit",
+};
+export const sevBg: Record<Severity, string> = {
+  ok: "bg-status-ok",
+  info: "bg-status-info",
+  warn: "bg-status-warn",
+  high: "bg-status-high",
+  crit: "bg-status-crit",
+};
+export const sevBorder: Record<Severity, string> = {
+  ok: "border-status-ok/40",
+  info: "border-status-info/40",
+  warn: "border-status-warn/40",
+  high: "border-status-high/40",
+  crit: "border-status-crit/50",
+};
+export const sevBgSoft: Record<Severity, string> = {
+  ok: "bg-status-ok/10",
+  info: "bg-status-info/10",
+  warn: "bg-status-warn/10",
+  high: "bg-status-high/10",
+  crit: "bg-status-crit/15",
+};
+
 export function statusLabel(s: OverallStatus) {
   return { OPERACIONAL: "Operacional", ATENCAO: "Atenção", RISCO_ALTO: "Risco Alto", EMERGENCIA: "Emergência" }[s];
 }
