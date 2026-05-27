@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SegurancaRouteImport } from './routes/seguranca'
 import { Route as RecursosRouteImport } from './routes/recursos'
 import { Route as EnergiaRouteImport } from './routes/energia'
+import { Route as ComunicacaoRouteImport } from './routes/comunicacao'
 import { Route as AmbientalRouteImport } from './routes/ambiental'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const EnergiaRoute = EnergiaRouteImport.update({
   path: '/energia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComunicacaoRoute = ComunicacaoRouteImport.update({
+  id: '/comunicacao',
+  path: '/comunicacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AmbientalRoute = AmbientalRouteImport.update({
   id: '/ambiental',
   path: '/ambiental',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
+  '/comunicacao': typeof ComunicacaoRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
+  '/comunicacao': typeof ComunicacaoRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
@@ -59,21 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
+  '/comunicacao': typeof ComunicacaoRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/ambiental' | '/energia' | '/recursos' | '/seguranca'
+  fullPaths:
+    | '/'
+    | '/ambiental'
+    | '/comunicacao'
+    | '/energia'
+    | '/recursos'
+    | '/seguranca'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/ambiental' | '/energia' | '/recursos' | '/seguranca'
-  id: '__root__' | '/' | '/ambiental' | '/energia' | '/recursos' | '/seguranca'
+  to:
+    | '/'
+    | '/ambiental'
+    | '/comunicacao'
+    | '/energia'
+    | '/recursos'
+    | '/seguranca'
+  id:
+    | '__root__'
+    | '/'
+    | '/ambiental'
+    | '/comunicacao'
+    | '/energia'
+    | '/recursos'
+    | '/seguranca'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AmbientalRoute: typeof AmbientalRoute
+  ComunicacaoRoute: typeof ComunicacaoRoute
   EnergiaRoute: typeof EnergiaRoute
   RecursosRoute: typeof RecursosRoute
   SegurancaRoute: typeof SegurancaRoute
@@ -102,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnergiaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/comunicacao': {
+      id: '/comunicacao'
+      path: '/comunicacao'
+      fullPath: '/comunicacao'
+      preLoaderRoute: typeof ComunicacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ambiental': {
       id: '/ambiental'
       path: '/ambiental'
@@ -122,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AmbientalRoute: AmbientalRoute,
+  ComunicacaoRoute: ComunicacaoRoute,
   EnergiaRoute: EnergiaRoute,
   RecursosRoute: RecursosRoute,
   SegurancaRoute: SegurancaRoute,
