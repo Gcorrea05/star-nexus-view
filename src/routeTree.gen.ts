@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SegurancaRouteImport } from './routes/seguranca'
 import { Route as RecursosRouteImport } from './routes/recursos'
 import { Route as EnergiaRouteImport } from './routes/energia'
+import { Route as CybersecurityRouteImport } from './routes/cybersecurity'
 import { Route as ComunicacaoRouteImport } from './routes/comunicacao'
 import { Route as AmbientalRouteImport } from './routes/ambiental'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +30,11 @@ const RecursosRoute = RecursosRouteImport.update({
 const EnergiaRoute = EnergiaRouteImport.update({
   id: '/energia',
   path: '/energia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CybersecurityRoute = CybersecurityRouteImport.update({
+  id: '/cybersecurity',
+  path: '/cybersecurity',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComunicacaoRoute = ComunicacaoRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
   '/comunicacao': typeof ComunicacaoRoute
+  '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
   '/comunicacao': typeof ComunicacaoRoute
+  '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/ambiental': typeof AmbientalRoute
   '/comunicacao': typeof ComunicacaoRoute
+  '/cybersecurity': typeof CybersecurityRoute
   '/energia': typeof EnergiaRoute
   '/recursos': typeof RecursosRoute
   '/seguranca': typeof SegurancaRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ambiental'
     | '/comunicacao'
+    | '/cybersecurity'
     | '/energia'
     | '/recursos'
     | '/seguranca'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ambiental'
     | '/comunicacao'
+    | '/cybersecurity'
     | '/energia'
     | '/recursos'
     | '/seguranca'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ambiental'
     | '/comunicacao'
+    | '/cybersecurity'
     | '/energia'
     | '/recursos'
     | '/seguranca'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AmbientalRoute: typeof AmbientalRoute
   ComunicacaoRoute: typeof ComunicacaoRoute
+  CybersecurityRoute: typeof CybersecurityRoute
   EnergiaRoute: typeof EnergiaRoute
   RecursosRoute: typeof RecursosRoute
   SegurancaRoute: typeof SegurancaRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/energia'
       fullPath: '/energia'
       preLoaderRoute: typeof EnergiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cybersecurity': {
+      id: '/cybersecurity'
+      path: '/cybersecurity'
+      fullPath: '/cybersecurity'
+      preLoaderRoute: typeof CybersecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/comunicacao': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AmbientalRoute: AmbientalRoute,
   ComunicacaoRoute: ComunicacaoRoute,
+  CybersecurityRoute: CybersecurityRoute,
   EnergiaRoute: EnergiaRoute,
   RecursosRoute: RecursosRoute,
   SegurancaRoute: SegurancaRoute,
